@@ -15,62 +15,69 @@
                     <div class="mb-5">
                         <div class="section-title position-relative mb-5">
                             <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course Detail</h6>
-                            <h1 class="display-4">Web design & development courses for beginners</h1>
+                            <h1 class="display-4">{{$course->heading}}</h1>
                         </div>
-                        <img class="img-fluid rounded w-100 mb-4" src="{{Vite::asset('resources/img/header.jpg')}}" alt="Image">
-                        <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
-                        
-                        <p>Sadipscing labore amet rebum est et justo gubergren. Et eirmod ipsum sit diam ut magna lorem.
-                            Nonumy vero labore lorem sanctus rebum et lorem magna kasd, stet amet magna accusam
-                            consetetur eirmod. Kasd accusam sit ipsum sadipscing et at at sanctus et. Ipsum sit
-                            gubergren dolores et, consetetur justo invidunt at et aliquyam ut et vero clita. Diam sea
-                            sea no sed dolores diam nonumy, gubergren sit stet no diam kasd vero.</p>
+                        <img class="img-fluid  rounded w-100 mb-4" src="{{$course->getFirstMediaUrl('banner')}}" alt="Image">
+                        {{-- <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
+                         --}}
+                        <h2>Tags:</h2>
+                        @foreach ($tags as $tag)
+                         <span class="badge mr-2 badge-info">
+                            <a class="text-decoration-none text-light" 
+                            href="{{route('course.related',['id' => $tag->id])}}">{{$tag->title}}</a>
+                        </span>
+                        @endforeach
+                        <h2>Description:</h2>
+                        <p>{{$course->body}}</p>
                     </div>
 
                     <h2 class="mb-3">Related Courses</h2>
                     <div class="owl-carousel related-carousel position-relative" style="padding: 0 30px;">
-                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail">
-                            <img class="img-fluid" src="{{Vite::asset('resources/img/courses-1.jpg')}}" alt="">
-                            <div class="courses-text">
-                                <h4 class="text-center text-white px-3">Web design & development courses for
-                                    beginners</h4>
-                                <div class="border-top w-100 mt-3">
-                                    <div class="d-flex justify-content-between p-4">
-                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                            <small>(250)</small></span>
+                       {{-- @foreach ($allCourses as $eachCourse)
+                           @php
+                               $turn = 0;
+                           @endphp
+                            @foreach ($eachCourse->tags as $eachTag)
+                                @foreach ($tags as $tag)
+                                    @if ($eachTag->id === $tag->id && $turn != 0)
+                                        @php
+                                            $turn = 1;
+                                        @endphp
+                                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail">
+                                            <img class="img-fluid" src="{{$eachCourse->getFirstMediaUrl('thumbnail')}}" alt="">
+                                            <div class="courses-text">
+                                                <h4 class="text-center text-white px-3">{{$eachCourse->heading}}</h4>
+                                                <div class="border-top w-100 mt-3">
+                                                    <div class="d-flex justify-content-between p-4">
+                                                        <span class="text-white"><i class="fa fa-user mr-2"></i>
+                                                            {{$eachCourse->instructor->name}}</span>
+                                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
+                                                            <small>(250)</small></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                       @endforeach --}}
+                       @foreach ($myarr as $item)
+                            <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
+                             href="{{route('course.details',['id'=>$item->id])}}">
+                                <img class="img-fluid" src="{{$item->getFirstMediaUrl('thumbnail')}}" alt="">
+                                <div class="courses-text">
+                                    <h4 class="text-center text-white px-3">{{$item->heading}}</h4>
+                                    <div class="border-top w-100 mt-3">
+                                        <div class="d-flex justify-content-between p-4">
+                                            <span class="text-white"><i class="fa fa-user mr-2"></i>
+                                                {{$item->instructor->name}}</span>
+                                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail">
-                            <img class="img-fluid" src="{{Vite::asset('resources/img/courses-2.jpg')}}" alt="">
-                            <div class="courses-text">
-                                <h4 class="text-center text-white px-3">Web design & development courses for
-                                    beginners</h4>
-                                <div class="border-top w-100 mt-3">
-                                    <div class="d-flex justify-content-between p-4">
-                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                            <small>(250)</small></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail">
-                            <img class="img-fluid" src="{{Vite::asset('resources/img/courses-3.jpg')}}" alt="">
-                            <div class="courses-text">
-                                <h4 class="text-center text-white px-3">Web design & development courses for
-                                    beginners</h4>
-                                <div class="border-top w-100 mt-3">
-                                    <div class="d-flex justify-content-between p-4">
-                                        <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                                        <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-                                            <small>(250)</small></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                       @endforeach
                     </div>
                </div>
 
@@ -79,7 +86,7 @@
                         <h3 class="text-white py-3 px-4 m-0">Course Features</h3>
                         <div class="d-flex justify-content-between border-bottom px-4">
                             <h6 class="text-white my-3">Instructor</h6>
-                            <h6 class="text-white my-3">John Doe</h6>
+                            <h6 class="text-white my-3">{{$course->instructor->name}}</h6>
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4">
                             <h6 class="text-white my-3">Rating</h6>
@@ -87,21 +94,21 @@
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4">
                             <h6 class="text-white my-3">Lectures</h6>
-                            <h6 class="text-white my-3">15</h6>
+                            <h6 class="text-white my-3">{{$course->lectures}}</h6>
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4">
                             <h6 class="text-white my-3">Duration</h6>
-                            <h6 class="text-white my-3">10.00 Hrs</h6>
+                            <h6 class="text-white my-3">{{$course->duration}} Hrs</h6>
                         </div>
                         <div class="d-flex justify-content-between border-bottom px-4">
                             <h6 class="text-white my-3">Skill level</h6>
-                            <h6 class="text-white my-3">All Level</h6>
+                            <h6 class="text-white my-3">{{$course->skill_level}}</h6>
                         </div>
                         <div class="d-flex justify-content-between px-4">
                             <h6 class="text-white my-3">Language</h6>
-                            <h6 class="text-white my-3">English</h6>
+                            <h6 class="text-white my-3">{{$course->language}}</h6>
                         </div>
-                        <h5 class="text-white py-3 px-4 m-0">Course Price: $199</h5>
+                        <h5 class="text-white py-3 px-4 m-0">Course Price: {{$course->price}}</h5>
                         <div class="py-3 px-4">
                             <a class="btn btn-block btn-secondary py-3 px-5" href="">Enroll Now</a>
                         </div>
@@ -135,46 +142,20 @@
 
                     <div class="mb-5">
                         <h2 class="mb-4">Recent Courses</h2>
-                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
-                            <img class="img-fluid rounded" src="{{Vite::asset('resources/img/courses-80x80.jpg')}}" alt="">
-                            <div class="pl-3">
-                                <h6>Web design & development courses for beginners</h6>
-                                <div class="d-flex">
-                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
-                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                        @foreach ($myarr as $item)
+                            <a class="d-flex align-items-center text-decoration-none mb-4" 
+                                href="{{route('course.details',['id' => $item->id])}}">
+                                <img class="img-fluid rounded" src="{{$item->getFirstMediaUrl('thumbnail')}}" alt="">
+                                <div class="pl-3">
+                                    <h6>{{$item->heading}}</h6>
+                                    <div class="d-flex">
+                                        <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>{{$item->instructor->name}}</small>
+                                        <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
-                            <img class="img-fluid rounded" src="{{Vite::asset('resources/img/courses-80x80.jpg')}}" alt="">
-                            <div class="pl-3">
-                                <h6>Web design & development courses for beginners</h6>
-                                <div class="d-flex">
-                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
-                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none mb-4" href="">
-                            <img class="img-fluid rounded" src="{{Vite::asset('resources/img/courses-80x80.jpg')}}" alt="">
-                            <div class="pl-3">
-                                <h6>Web design & development courses for beginners</h6>
-                                <div class="d-flex">
-                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
-                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none" href="">
-                            <img class="img-fluid rounded" src="{{Vite::asset('resources/img/courses-80x80.jpg')}}" alt="">
-                            <div class="pl-3">
-                                <h6>Web design & development courses for beginners</h6>
-                                <div class="d-flex">
-                                    <small class="text-body mr-3"><i class="fa fa-user text-primary mr-2"></i>Jhon Doe</small>
-                                    <small class="text-body"><i class="fa fa-star text-primary mr-2"></i>4.5 (250)</small>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>

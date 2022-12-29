@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            <a class='mr-5 p-2 hover:bg-[#fec] hover:text-[blue]' href="/">{{ __('Home') }}</a>
+            <a class='mr-5  p-2 hover:bg-[#000] hover:text-[blue]' href="/">{{ __('Dashboard') }}</a>
         </h2>
     </x-slot>
 

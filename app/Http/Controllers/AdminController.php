@@ -10,6 +10,44 @@ use App\Models\Tag;
 
 class AdminController extends Controller
 {
+    public function show_blogs(){
+        $blogs = Blog::all();
+        return view('Blog.blog_index',
+            ['blogs' => $blogs]);
+    }
+
+    public function blog_edit($id){
+        $blog = Blog::find($id);
+        // dd($blog->content);
+        
+        return view('Blog.blog_edit',
+            ['blog' => $blog]);
+    } 
+
+    public function blog_update(Request $request, $id){
+        $blog = Blog::find($id);
+        $blog->title = $request->title;
+        $blog->heading = $request->heading;
+        if(isset($request->content)){
+            $blog->content = $request->content;
+        }
+        $blog->type = $request->type;
+        $blog->save();
+        if(isset($request->image)){
+            $blog->addMediaFromRequest('image')
+            ->toMediaCollection('thumbnail');
+        }
+        return redirect(route('blog.index'))
+        ->with('status','Successfully updated blog 🎉');
+    } 
+
+    public function blog_delete($id){
+        $blog = Blog::find($id);
+        $blog->delete();
+        return redirect(route('blog.index'))
+        ->with('status','Successfully deleted blog 🎉');
+    }
+
     public function create(){
         return view('Blog.create_blog');
     }
@@ -42,6 +80,56 @@ class AdminController extends Controller
         );
     }
 
+    public function course_show(){
+        $courses = Course::all();
+        return view('Course.course_index',
+            ['courses'=>$courses]);
+    }
+
+    public function course_edit($id){
+        $course = Course::find($id);
+        $tutors = Instructor::all();
+        $tags = Tag::all();
+        return view('Course.course_edit',
+            [
+                'course' => $course,
+                'instructors' => $tutors,
+                'tags' => $tags,
+        ]);
+    }
+    
+    public function course_update(Request $request, $id){
+        $course = Course::find($id);
+        $course->heading = $request->heading;
+        if(isset($request->body)){
+        $course->body = $request->body;
+        }
+        $tutor = Instructor::find($request->instructor);
+        $tutor->courses()->save($course);
+        $course->lectures = $request->lectures;
+        $course->duration = $request->duration;
+        $course->skill_level = $request->skill_level;
+        $course->lectures = $request->lectures;
+        $course->price = $request->price;
+        if(isset($request->thumbnail)){
+            $course->addMediaFromRequest('thumbnail')
+            ->toMediaCollection('thumbnail');
+        }
+        if(isset($request->banner)){
+            $course->addMediaFromRequest('banner')
+            ->toMediaCollection('banner');
+        }
+        $course->save();
+
+
+        return redirect(route('course.index'))
+        ->with('status','Successfully Updated Course 🎉');
+    }
+    public function course_delete($id){
+
+        return redirect(route('course.index'))
+        ->with('status','Successfully Deleted Course 🎉');
+    }
     public function course_store(Request $request){
         // dd($request->body);
         $course = new Course();
@@ -69,7 +157,7 @@ class AdminController extends Controller
         return redirect(route('course.create'))
         ->with('status','Successfully Created Course 🎉');
     }
-    
+
     public function tag_create(){
         return view('Tags.create_tag');
     }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Blog;
+use App\Models\Course;
 use App\Models\Instructor;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -14,19 +16,42 @@ class SiteController extends Controller
         $blogs = Blog::all()->sortDesc();
         $tutors = Instructor::all();
         // dd($tutors);
+        $courses = Course::all()->sortDesc();
+
         return view('index',
         [
             'blogs' => $blogs,
             'instructors' => $tutors,
+            'courses' => $courses,
         ]);
     }      
 
-    // $b = Blog::find(1)->type;
-    // dd($blogs[3]->getFirstMedia('thumbnail')->getUrl());
-    // dd(compact("b")); 
-    // dd(compact('blogs'));
-    // return  compact('blogs');
-    // return view('try.try',['blogs' => $blogs]);
+    public function course_details($id){
+        $course = Course::find($id);
+        $tags = $course->tags;
+        
+        $allCourses = Course::all();
+        $myarr = [];
+        foreach($allCourses as $it){
+            $turn = 0;
+            foreach($it->tags as $tag){
+                foreach($tags as $tg){
+                    if($tg->id === $tag->id && !$turn){
+                        $turn = 1;
+                        // printf($it.'\n');
+                        array_push($myarr,$it);
+                    }
+                }
+            }
+        }
+        // dd($myarr);
+        return view('detail',[
+            'course' => $course,
+            'tags' => $tags,
+            'allCourses' => $allCourses,
+            'myarr' => $myarr,
+        ]);
+    }
 
     public function about(){
         $blogs = Blog::all()->sortDesc();
@@ -50,12 +75,23 @@ class SiteController extends Controller
     }
 
     public function course(){
-        return view('course');   
+        $courses = Course::all();
+        return view('course',
+            ['courses' => $courses]);   
     }
 
     public function detail(){
         // dd(explode('.',Route::currentRouteName())[0]);
         return view('detail');   
+    }
+
+    public function taged_courses($id){
+        $tag = Tag::find($id);
+        // dd($tag->courses());
+        $courses = $tag->courses;
+        // dd(explode('.',Route::currentRouteName())[0]);
+        return view('course',
+            ['courses' => $courses]);   
     }
 
     public function feature(){

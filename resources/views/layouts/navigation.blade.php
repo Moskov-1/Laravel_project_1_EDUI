@@ -12,21 +12,28 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('dashboard')">
+                    @if(Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('profile') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('blog.create')" :active="request()->routeIs('dashboard')">
-                        {{ __('blog') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('instructor.create')" :active="request()->routeIs('dashboard')">
-                        {{ __('instructors') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('tag.create')" :active="request()->routeIs('dashboard')">
-                        {{ __('tags') }}
-                    </x-nav-link>
+                    @if (Auth::user()->role === 'admin')      
+                        <x-nav-link :href="route('blog.create')" :active="request()->routeIs('blog.create')">
+                            {{ __('blog') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('instructor.create')" :active="request()->routeIs('instructor.create')">
+                            {{ __('instructors') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('tag.create')" :active="request()->routeIs('tag.create')">
+                            {{ __('tags') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('course.create')" :active="request()->routeIs('course.create')">
+                            {{ __('courses') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

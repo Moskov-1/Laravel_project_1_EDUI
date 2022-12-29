@@ -20,5 +20,15 @@ class Blog extends Model implements HasMedia
         // 'image_link'
     ];
 
+    public function registerMediaCollections(): void{
+        
+        $this
+            ->addMediaCollection('thumbnail')
+            ->singleFile();
+    }
+    public static function last(){
+
+        return static::all()->last();
+    }
 
 }

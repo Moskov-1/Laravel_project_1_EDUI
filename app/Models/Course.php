@@ -22,6 +22,16 @@ class Course extends Model implements HasMedia
         'price',
     ];
 
+    public function registerMediaCollections(): void{
+        
+        $this
+            ->addMediaCollection('thumbnail')
+            ->singleFile();
+        
+        $this
+            ->addMediaCollection('banner')
+            ->singleFile();
+    }
     
     public function instructor(){
         return $this->belongsTo(Instructor::class);

@@ -79,24 +79,24 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mx-auto py-0">
-                    <a href="/" class="nav-item nav-link {{(Route::currentRouteName() === 'home')?'active':''}}">Home</a>
-                    <a href="about" class="nav-item nav-link {{(Route::currentRouteName()=== 'about')?'active':''}}">About</a>
-                    <a href="course" class="nav-item nav-link {{(Route::currentRouteName()=== 'course')?'active':''}}">Courses</a>
+                    <a href="{{route('home')}}" class="nav-item nav-link {{(Route::currentRouteName() === 'home')?'active':''}}">Home</a>
+                    <a href="{{route('about')}}" class="nav-item nav-link {{(Route::currentRouteName()=== 'about')?'active':''}}">About</a>
+                    <a href="{{route('course')}}" class="nav-item nav-link {{(Route::currentRouteName()=== 'course')?'active':''}}">Courses</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle {{ (explode('.',Route::currentRouteName())[0] == 'pages') ? 'active' : '' }}" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
-                            <a href="detail" class="dropdown-item">Course Detail</a>
-                            <a href="feature" class="dropdown-item">Our Features</a>
-                            <a href="team" class="dropdown-item">Instructors</a>
-                            <a href="testimonial" class="dropdown-item">Testimonial</a>
+                            <a href="{{route('pages.feature')}}" class="dropdown-item">Our Features</a>
+                            <a href="{{route('pages.team')}}" class="dropdown-item">Instructors</a>
+                            <a href="{{route('pages.testimonial')}}" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="contact" class="nav-item nav-link {{(Route::currentRouteName()=== 'contact')?'active':''}}">Contact</a>
+                    <a href="{{route('contact')}}" class="nav-item nav-link {{(Route::currentRouteName()=== 'contact')?'active':''}}">Contact</a>
                 </div>
                 @auth
                     {{-- @if(auth()->user()->role == 'customer') --}}
                     @if(Auth::user()->role == 'customer')
-                    <div class="btn btn-primary py-2 px-4 d-none d-lg-block">{{auth()->user()->name}}</div>
+                        <a class="btn btn-primary py-2 px-4 d-none d-lg-block"
+                        href="{{route('profile.edit')}}">{{auth()->user()->name}}</a>
                     <form action="{{ url('/logout') }}"
                         method="POST">
                         @csrf

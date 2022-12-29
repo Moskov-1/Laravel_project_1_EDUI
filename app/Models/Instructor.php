@@ -22,6 +22,13 @@ class Instructor extends Model implements HasMedia
         'facebook',
     ];
 
+    public function registerMediaCollections(): void{
+        
+        $this
+            ->addMediaCollection('profile_picture')
+            ->singleFile();
+    }
+
     public function courses(){
         return $this->hasMany(Course::class);
     }

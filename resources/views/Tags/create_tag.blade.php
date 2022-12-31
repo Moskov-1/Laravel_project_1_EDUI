@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tags') }}
+            <a href="{{route('tag.index')}}" class="{{Route::currentRouteName()==='tag.index'?'border border-blue-500 rounded py-1 px-3 bg-blue-500 text-white':''}}">
+                {{ __('Tags') }}</a>
+            <a href="{{route('tag.create')}}" class="{{Route::currentRouteName()==='tag.create'?'border border-blue-500 rounded py-1 px-3 bg-blue-500 text-white':''}}">
+                {{ __('Create Tags') }}</a>
         </h2>
     </x-slot>
     <div class="py-12">

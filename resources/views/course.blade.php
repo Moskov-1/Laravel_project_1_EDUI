@@ -19,7 +19,7 @@
                         @if (Route::currentRouteName()==='course')
                             <h1 class="display-4">Checkout New Releases Of Our Courses</h1>
                         @else
-                            <h1 class="display-4">Checkout New Related Courses</h1>
+                            <h1 class="display-4">Checkout {{$tag->title}} Related Courses</h1>
                         @endif
                     </div>
                 </div>

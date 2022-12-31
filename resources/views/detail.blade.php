@@ -14,7 +14,7 @@
                 <div class="col-lg-8">
                     <div class="mb-5">
                         <div class="section-title position-relative mb-5">
-                            <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course Detail</h6>
+                            {{-- <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course Detail</h6> --}}
                             <h1 class="display-4">{{$course->heading}}</h1>
                         </div>
                         <img class="img-fluid  rounded w-100 mb-4" src="{{$course->getFirstMediaUrl('banner')}}" alt="Image">

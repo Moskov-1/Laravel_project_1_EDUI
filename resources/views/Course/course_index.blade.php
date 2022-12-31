@@ -17,10 +17,11 @@
                           {{session('status')}}
                       </div>
                     @endif
+                    <h1 class="text-4xl pb-5"> Course Table </h1>
                     <table class="border-separate border-spacing-2 border border-slate-500 ...">
                         <thead>
                           <tr>
-                            <th class="border border-slate-600 ...">Id</th>
+                            <th class="border border-slate-600 p-3 ...">Id</th>
                             <th class="border border-slate-600 ...">heading</th>
                             <th class="border border-slate-600 ...">skill_level</th>
                             <th class="border border-slate-600 ...">Instructor</th>
@@ -35,23 +36,23 @@
                         <tbody>
                           @foreach ($courses as $course)
                             <tr>
-                              <td class="border border-slate-700 ...">{{$course->id}}</td>
-                              <td class="border border-slate-700 ...">{{$course->heading}}</td>
-                              <td class="border border-slate-700 ...">{{$course->skill_level}}</td>
-                              <td class="border border-slate-700 ...">{{$course->instructor->name}}</td>
-                              <td class="border border-slate-700 ...">{{$course->lectures}}</td>
-                              <td class="border border-slate-700 ...">{{$course->duration}}</td>
-                              <td class="border border-slate-700 ...">{{$course->language}}</td>
-                              <td class="border border-slate-700 ...">{{$course->price}}</td>
+                              <td class="border border-slate-700 p-3 ...">{{$course->id}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->heading}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->skill_level}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->instructor->name}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->lectures}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->duration}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->language}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->price}}</td>
 
-                              <td class="border border-slate-700 ...">
+                              <td class="border border-slate-700 bg-lime-500 px-5 ...">
                                 <form method="get"
                                   action="{{route('course.edit',['id' => $course->id])}}">
                                   @csrf
                                   <input type="submit" name="submit" value="update">
                                 </form>
                               </td>
-                              <td class="border border-slate-700 ...">
+                              <td class="border border-slate-700 bg-red-600 px-5  ...">
                                 <form method="POST"
                                   action="{{route('course.delete',['id' => $course->id])}}">
                                   @csrf

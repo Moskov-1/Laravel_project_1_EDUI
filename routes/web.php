@@ -46,8 +46,12 @@ Route::middleware(['auth','admin','verified'])->group(function(){
     Route::put('/course-create/{id}', [AdminController::class, 'course_update'])->name('course.update');
     Route::delete('/course-create/{id}', [AdminController::class, 'course_delete'])->name('course.delete');
 
+    Route::get('/tag-show', [AdminController::class, 'tag_show'])->name('tag.index');
     Route::get('/tag', [AdminController::class, 'tag_create'])->name('tag.create');
     Route::post('/tag', [AdminController::class, 'tag_store'])->name('tag.store');
+    Route::get('/tag/{id}', [AdminController::class, 'tag_edit'])->name('tag.edit');
+    Route::put('/tag/{id}', [AdminController::class, 'tag_update'])->name('tag.update');
+    Route::delete('/tag/{id}', [AdminController::class, 'tag_delete'])->name('tag.delete');
 
     Route::get('/instructor', [AdminController::class, 'instructor_create'])->name('instructor.create');
     Route::post('/instructor', [AdminController::class, 'instructor_store'])->name('instructor.store');

@@ -91,7 +91,10 @@ class SiteController extends Controller
         $courses = $tag->courses;
         // dd(explode('.',Route::currentRouteName())[0]);
         return view('course',
-            ['courses' => $courses]);   
+            [
+                'courses' => $courses,
+                'tag'=> $tag,
+            ]);   
     }
 
     public function feature(){

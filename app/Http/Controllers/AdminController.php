@@ -126,6 +126,8 @@ class AdminController extends Controller
         ->with('status','Successfully Updated Course 🎉');
     }
     public function course_delete($id){
+        $course = Course::find($id);
+        $course->delete();
 
         return redirect(route('course.index'))
         ->with('status','Successfully Deleted Course 🎉');
@@ -158,6 +160,12 @@ class AdminController extends Controller
         ->with('status','Successfully Created Course 🎉');
     }
 
+    public function tag_show(){
+        $tags = Tag::all();
+        return view('Tags.tag_index',
+            ['tags' => $tags]);
+    }
+
     public function tag_create(){
         return view('Tags.create_tag');
     }
@@ -172,6 +180,15 @@ class AdminController extends Controller
 
         return redirect(route('tag.create'))
         ->with('status','Successfully Created tag 🎉');
+    }
+
+    public function tag_delete($id){
+        $tag = Tag::find($id)->delete();
+        
+
+        return view('Tags.create_tag');
+        return redirect(route('tag.index'))
+        ->with('status','Successfully Deleted tag 🎉');
     }
 
     public function instructor_create(){

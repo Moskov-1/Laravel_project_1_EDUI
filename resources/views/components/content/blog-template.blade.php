@@ -18,7 +18,7 @@
 								<h1 class="display-4">{{$blog->heading}}</h1>
 							</div>
 							<p>{{$blog->content}}</p>
-							<div class="row pt-3 mx-0">
+							{{-- <div class="row pt-3 mx-0">
 								<div class="col-3 px-0">
 									<div class="bg-success text-center p-4">
 										<h1 class="text-white" data-toggle="counter-up">123</h1>
@@ -43,7 +43,7 @@
 										<h6 class="text-uppercase text-white">Happy<span class="d-block">Students</span></h6>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -62,34 +62,10 @@
 							</div>
 							<p class="mb-4 pb-2">
 								{{$blog->content}}</p>
-							<div class="d-flex mb-3">
-								<div class="btn-icon bg-primary mr-4">
-									<i class="fa fa-2x fa-graduation-cap text-white"></i>
-								</div>
-								<div class="mt-n1">
-									<h4>Skilled Instructors</h4>
-									<p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
-								</div>
+							
 							</div>
-							<div class="d-flex mb-3">
-								<div class="btn-icon bg-secondary mr-4">
-									<i class="fa fa-2x fa-certificate text-white"></i>
-								</div>
-								<div class="mt-n1">
-									<h4>International Certificate</h4>
-									<p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
-								</div>
-							</div>
-							<div class="d-flex">
-								<div class="btn-icon bg-warning mr-4">
-									<i class="fa fa-2x fa-book-reader text-white"></i>
-								</div>
-								<div class="mt-n1">
-									<h4>Online Classes</h4>
-									<p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
-								</div>
-							</div>
-						</div>
+						
+						
 						<div class="col-lg-5" style="min-height: 500px;">
 							<div class="position-relative h-100">
 								<img class="position-absolute w-100 h-100" 

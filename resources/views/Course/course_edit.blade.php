@@ -73,7 +73,10 @@
                                     name="instructor"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 @foreach ($instructors as $instructor)                                
-                                    <option value="{{$instructor->id}}">{{$instructor->name}}: {{$instructor->tag->Field}}</option>
+                                    <option value="{{$instructor->id}}" {{
+                                        ($course->instructor->id === $instructor->id)
+                                        ? "selected" : ""}}>
+                                    {{$instructor->name}}: {{$instructor->tag->Field}}</option>
                                 @endforeach    
                             </select>
                         </div>
@@ -88,8 +91,12 @@
                                         {{$tag->title}}</span>
                                 @endforeach <br><br>
                                 @foreach ($tags as $tag)
-                                    <input type="checkbox" class="ml-2" id="tag-{{$tag->id}}"
-                                     name="tags[]" value="{{$tag->id}}" >
+                                    <input type="checkbox" class="ml-2" id="tag-{{$tag->id}}" 
+                                        {{
+                                            ($course->tags->contains($tag) === true)
+                                            ? "checked" : ""
+                                        }}    
+                                    name="tags[]" value="{{$tag->id}}" >
                                         <label id="tag-{{$tag->id}}" class="pl-2 mb-5 text-sm font-medium text-white dark:text-white">{{$tag->title}}: {{$tag->Field}}</label><br/><br>
                                 @endforeach
 
@@ -102,11 +109,16 @@
                                  </p>
                             <select id="language" required
                                     name="language"
-                                    defaultValue='{{$course->language}}'
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="English">English</option>
-                                <option value="Germen">Germen</option>
-                                <option value="Bangla">Bangla</option>
+                                <option value="English" {{
+                                    ($course->language ==='English')
+                                    ? "selected" : ""  }}>English</option>
+                                <option value="Germen" {{
+                                    ($course->language ==='Germen')
+                                    ? "selected" : ""  }}>Germen</option>
+                                <option value="Bangla" {{
+                                    ($course->language ==='Bangla')
+                                    ? "selected" : ""  }}>Bangla</option>
                             </select>
                         </div>
                         <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">

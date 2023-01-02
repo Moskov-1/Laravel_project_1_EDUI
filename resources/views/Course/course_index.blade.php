@@ -8,7 +8,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     @if(session()->has('status'))
@@ -25,9 +25,10 @@
                             <th class="border border-slate-600 ...">heading</th>
                             <th class="border border-slate-600 ...">skill_level</th>
                             <th class="border border-slate-600 ...">Instructor</th>
-                            <th class="border border-slate-600 ...">lectures</th>
-                            <th class="border border-slate-600 ...">duration</th>
+                            <th class="border border-slate-600 p-3 ...">lectures</th>
+                            <th class="border border-slate-600 p-3 ...">duration</th>
                             <th class="border border-slate-600 ...">language</th>
+                            <th class="border border-slate-600 ...">tags</th>
                             <th class="border border-slate-600 ...">price</th>
                             <th class="border border-slate-600 ...">update</th>
                             <th class="border border-slate-600 ...">delete</th>
@@ -43,6 +44,7 @@
                               <td class="border border-slate-700 px-5 ...">{{$course->lectures}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->duration}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->language}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{count($course->tags)}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->price}}</td>
 
                               <td class="border border-slate-700 bg-lime-500 px-5 ...">

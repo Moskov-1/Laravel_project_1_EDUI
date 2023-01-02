@@ -4,6 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiteController;
+use App\Models\Blog;
+use App\Models\Course;
+use App\Models\Instructor;
+use App\Models\Tag;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
@@ -24,7 +30,11 @@ Route::get('/course/{id}',[SiteController::class, 'taged_courses'])->name('cours
 
 Route::middleware(['auth','admin','verified'])->group(function(){
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $users = User::all();
+        // $tag = Tag::withCount('courses')->get();
+        // $tag = Tag::find(4)->load('courses');
+        // dd(count($tag->courses));
+        return view('dashboard',['users'=>$users]);
     })->name('dashboard');
 
 
@@ -38,13 +48,12 @@ Route::middleware(['auth','admin','verified'])->group(function(){
     Route::put('/blog/{id}', [AdminController::class, 'blog_update'])->name('blog.update');
     Route::delete('/blog/{id}', [AdminController::class, 'blog_delete'])->name('blog.delete');
 
-    
-    Route::get('/course-show', [AdminController::class, 'course_show'])->name('course.index');
-    Route::get('/course-create', [AdminController::class, 'course_create'])->name('course.create');
-    Route::post('/course-create', [AdminController::class, 'course_store'])->name('course.store');
-    Route::get('/course-create/{id}', [AdminController::class, 'course_edit'])->name('course.edit');
-    Route::put('/course-create/{id}', [AdminController::class, 'course_update'])->name('course.update');
-    Route::delete('/course-create/{id}', [AdminController::class, 'course_delete'])->name('course.delete');
+    Route::get('/instructor-show', [AdminController::class, 'instructor_show'])->name('instructor.index');
+    Route::get('/instructor', [AdminController::class, 'instructor_create'])->name('instructor.create');
+    Route::post('/instructor', [AdminController::class, 'instructor_store'])->name('instructor.store');
+    Route::get('/instructor/{id}', [AdminController::class, 'instructor_edit'])->name('instructor.edit');
+    Route::put('/instructor/{id}', [AdminController::class, 'instructor_update'])->name('instructor.update');
+    Route::delete('/instructor/{id}', [AdminController::class, 'instructor_delete'])->name('instructor.delete');
 
     Route::get('/tag-show', [AdminController::class, 'tag_show'])->name('tag.index');
     Route::get('/tag', [AdminController::class, 'tag_create'])->name('tag.create');
@@ -52,10 +61,13 @@ Route::middleware(['auth','admin','verified'])->group(function(){
     Route::get('/tag/{id}', [AdminController::class, 'tag_edit'])->name('tag.edit');
     Route::put('/tag/{id}', [AdminController::class, 'tag_update'])->name('tag.update');
     Route::delete('/tag/{id}', [AdminController::class, 'tag_delete'])->name('tag.delete');
-
-    Route::get('/instructor', [AdminController::class, 'instructor_create'])->name('instructor.create');
-    Route::post('/instructor', [AdminController::class, 'instructor_store'])->name('instructor.store');
-
+ 
+    Route::get('/course-show', [AdminController::class, 'course_show'])->name('course.index');
+    Route::get('/course-create', [AdminController::class, 'course_create'])->name('course.create');
+    Route::post('/course-create', [AdminController::class, 'course_store'])->name('course.store');
+    Route::get('/course-create/{id}', [AdminController::class, 'course_edit'])->name('course.edit');
+    Route::put('/course-create/{id}', [AdminController::class, 'course_update'])->name('course.update');
+    Route::delete('/course-create/{id}', [AdminController::class, 'course_delete'])->name('course.delete');
 
     
 });

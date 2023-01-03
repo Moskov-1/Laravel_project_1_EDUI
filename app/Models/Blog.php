@@ -20,6 +20,10 @@ class Blog extends Model implements HasMedia
         // 'image_link'
     ];
 
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'blog_tags');
+    }
+
     public function registerMediaCollections(): void{
         
         $this

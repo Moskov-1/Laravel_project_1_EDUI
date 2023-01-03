@@ -21,16 +21,16 @@
                         {{ __('profile') }}
                     </x-nav-link>
                     @if (Auth::user()->role === 'admin')      
-                        <x-nav-link :href="route('blog.create')" :active="request()->routeIs('blog.create')">
+                        <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
                             {{ __('blog') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('instructor.create')" :active="request()->routeIs('instructor.create')">
+                        <x-nav-link :href="route('instructor.index')" :active="request()->routeIs('instructor.index')">
                             {{ __('instructors') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('tag.create')" :active="request()->routeIs('tag.create')">
+                        <x-nav-link :href="route('tag.index')" :active="request()->routeIs('tag.index')">
                             {{ __('tags') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('course.create')" :active="request()->routeIs('course.create')">
+                        <x-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')">
                             {{ __('courses') }}
                         </x-nav-link>
                     @endif

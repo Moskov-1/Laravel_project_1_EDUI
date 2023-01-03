@@ -30,6 +30,7 @@
                             <th class="border border-slate-600 ...">language</th>
                             <th class="border border-slate-600 ...">tags</th>
                             <th class="border border-slate-600 ...">price</th>
+                            <th class="border border-slate-600 ...">users</th>
                             <th class="border border-slate-600 ...">update</th>
                             <th class="border border-slate-600 ...">delete</th>
                           </tr>
@@ -42,10 +43,11 @@
                               <td class="border border-slate-700 px-5 ...">{{$course->skill_level}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->instructor->name}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->lectures}}</td>
-                              <td class="border border-slate-700 px-5 ...">{{$course->duration}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{$course->duration}} hrs</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->language}}</td>
                               <td class="border border-slate-700 px-5 ...">{{count($course->tags)}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$course->price}}</td>
+                              <td class="border border-slate-700 px-5 ...">nai</td>
 
                               <td class="border border-slate-700 bg-lime-500 px-5 ...">
                                 <form method="get"

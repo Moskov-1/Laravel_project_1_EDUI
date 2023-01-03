@@ -24,6 +24,8 @@
                             <th class="border border-slate-600 p-3 ...">Id</th>
                             <th class="border border-slate-600 ...">genre</th>
                             <th class="border border-slate-600 ...">heading</th>
+                            <th class="border border-slate-600 px-3 ...">tags</th>
+                            <th class="border border-slate-600 px-3 ...">orientation</th>
                             <th class="border border-slate-600 ...">Update</th>
                             <th class="border border-slate-600 ...">delete</th>
                           </tr>
@@ -34,6 +36,8 @@
                               <td class="border border-slate-700 p-3 px-5 ...">{{$blog->id}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$blog->title}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$blog->heading}}</td>
+                              <td class="border border-slate-700 px-5 ...">{{count($blog->tags)}}</td>
+                              <td class="border border-slate-700 px-9 ...">{{$blog->type}}</td>
                               
                               <td class="border border-slate-700 bg-lime-500 px-5 ...">
                                 <form method="get"

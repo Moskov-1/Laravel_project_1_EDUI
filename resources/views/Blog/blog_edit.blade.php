@@ -42,14 +42,41 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">
-                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
+                            <label for="type" class="block mb-2 text-sm font-medium text-white">Select an option</label>
+                            <p class="pl-5 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                              old:  {{$blog->type}}</p>
                             <select id="type"
-                                    name="type" defaultValue="{{$blog->type}}"
+                                    name="type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="left">left</option>
-                                <option value="right">right</option>
-                                <option value="middle">middle</option>
+                                <option value="left"
+                                {{$blog->type === 'left' ? 'selected' : ''}}>
+                                    left</option>
+                                <option value="right"
+                                {{$blog->type === 'right' ? 'selected' : ''}}>right</option>
+                                <option value="middle"
+                                {{$blog->type === 'middle' ? 'selected' : ''}}>middle</option>
                             </select>
+                        </div>
+                        <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">
+                            <label for="base-less" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                Select tags</label>
+                                <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                    Old tags: 
+                                 </p>
+                                @foreach ($blog->tags as $tag)
+                                    <span class='border border-blue-500 rounded py-1 px-3 bg-blue-500 text-white'>
+                                        {{$tag->title}}</span>
+                                @endforeach <br><br>
+                                @foreach ($tags as $tag)
+                                    <input type="checkbox" class="ml-2" id="tag-{{$tag->id}}" 
+                                        {{
+                                            ($blog->tags->contains($tag) === true)
+                                            ? "checked" : ""
+                                        }}    
+                                    name="tags[]" value="{{$tag->id}}" >
+                                        <label id="tag-{{$tag->id}}" class="pl-2 mb-5 text-sm font-medium text-white dark:text-white">{{$tag->title}}: {{$tag->Field}}</label><br/><br>
+                                @endforeach
+
                         </div>
                         <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">
                             <label for="base-input" class="pl-2.5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">

@@ -31,7 +31,7 @@
                     <a class="courses-list-item position-relative d-block overflow-hidden mb-2" 
                         href="{{route('course.details',['id'=>$course->id])}}">
                         <img class="img-fluid" 
-                            src="{{$course->getFirstMediaUrl('thumbnail')}}" 
+                            src="{{$course->getFirstMediaUrl('thumbnail','card')}}" 
                             alt="{{$course->getFirstMedia('thumbnail')->name}}">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3">{{$course->heading}}</h4>

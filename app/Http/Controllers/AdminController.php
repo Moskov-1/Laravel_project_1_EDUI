@@ -16,12 +16,44 @@ class AdminController extends Controller
             ['blogs' => $blogs]);
     }
 
+
+    public function create(){
+        $tags = Tag::all();
+        return view('Blog.create_blog',
+        ['tags'=>$tags]);
+    }
+
+    public function store(Request $request){
+        // $user = $request->user();
+        // dd($request->all());
+        $blog = new Blog();
+        $blog->title = $request->title;
+        $blog->heading = $request->heading;
+        $blog->content = $request->content;
+        $blog->type = $request->type;
+        $blog->save();
+
+        if(isset($request->tags)){
+            $blog->tags()->attach($request->tags);
+        }
+
+        $blog->addMediaFromRequest('image')
+            ->toMediaCollection('thumbnail');
+
+        return redirect(route('blog.create'))
+            ->with('status','Successfully sent !');
+    }
+
     public function blog_edit($id){
-        $blog = Blog::find($id);
+        $blog = Blog::find($id)->load('tags');
         // dd($blog->content);
-        
+        // dd($blog->tags);
+        $tags = Tag::all();
         return view('Blog.blog_edit',
-            ['blog' => $blog]);
+            [
+                'blog' => $blog,
+                'tags'=>$tags,
+            ]);
     } 
 
     public function blog_update(Request $request, $id){
@@ -33,6 +65,11 @@ class AdminController extends Controller
         }
         $blog->type = $request->type;
         $blog->save();
+
+        if(isset($request->tags)){
+            $blog->tags()->attach($request->tags);
+        }
+
         if(isset($request->image)){
             $blog->addMediaFromRequest('image')
             ->toMediaCollection('thumbnail');
@@ -48,28 +85,6 @@ class AdminController extends Controller
         ->with('status','Successfully deleted blog 🎉');
     }
 
-    public function create(){
-        return view('Blog.create_blog');
-    }
-
-    public function store(Request $request){
-        // $user = $request->user();
-        // dd($request->all());
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->heading = $request->heading;
-        $blog->content = $request->content;
-        $blog->type = $request->type;
-        $blog->save();
-
-        $blog->addMediaFromRequest('image')
-            ->toMediaCollection('thumbnail');
-
-        return redirect(route('blog.create'))
-            ->with('status','Successfully sent !');
-    }
-
-    
     public function instructor_show(){
         $instructors = Instructor::withCount('courses')->get();
         return view('Instructor.instructor_index',
@@ -152,7 +167,7 @@ class AdminController extends Controller
 
     
     public function tag_show(){
-        $tags = Tag::all();
+        $tags = Tag::withCount(['courses','instructors','blogs'])->get();
         return view('Tags.tag_index',
             ['tags' => $tags]);
     }

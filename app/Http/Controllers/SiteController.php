@@ -44,12 +44,27 @@ class SiteController extends Controller
                 }
             }
         }
-        // dd($myarr);
+
+        $myBlogs = [];
+        $blogs = Blog::all();
+
+        foreach($blogs as $blog){
+            foreach($blog->tags as $btag){
+                if($course->tags->contains($btag)){
+                    array_push($myBlogs,$blog);
+                    break;
+                }
+            }
+        }
+    
+        $tags = Tag::all();
+
         return view('detail',[
             'course' => $course,
             'tags' => $tags,
             'allCourses' => $allCourses,
             'myarr' => $myarr,
+            'myBlogs' => $myBlogs,
         ]);
     }
 
@@ -80,6 +95,7 @@ class SiteController extends Controller
             ['courses' => $courses]);   
     }
 
+    //depricated --> unused
     public function detail(){
         // dd(explode('.',Route::currentRouteName())[0]);
         return view('detail');   
@@ -102,7 +118,9 @@ class SiteController extends Controller
     }
 
     public function team(){
-        return view('team');   
+        $instructors = Instructor::all();
+        return view('team',
+            ['instructors'=>$instructors]);   
     }
 
     public function testimonial(){

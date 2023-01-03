@@ -49,6 +49,16 @@
                             </select>
                         </div>
                         <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">
+                            <label for="base-less" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                Select tags</label>
+                                @foreach ($tags as $tag)
+                                    <input type="checkbox" class="ml-2" id="tag-{{$tag->id}}"    
+                                    name="tags[]" value="{{$tag->id}}" >
+                                        <label id="tag-{{$tag->id}}" class="pl-2 mb-5 text-sm font-medium text-white dark:text-white">{{$tag->title}}: {{$tag->Field}}</label><br/><br>
+                                @endforeach
+
+                        </div>
+                        <div class="mb-6 bg-gray-50 border dark:bg-gray-700 border-gray-300">
                             <label for="base-input" class="pl-2.5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Thumb Nail</label>
                             

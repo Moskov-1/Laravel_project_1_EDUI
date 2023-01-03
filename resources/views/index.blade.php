@@ -22,7 +22,7 @@
             @foreach ($courses as $course)
                 
                 <div class="courses-item position-relative">
-                    <img class="img-fluid" src="{{$course->getFirstMediaUrl('thumbnail')}}" alt="">
+                    <img class="img-fluid" src="{{$course->getFirstMediaUrl('thumbnail','card')}}" alt="">
                     <div class="courses-text">
                         <h4 class="text-center text-white px-3">{{$course->heading}}</h4>
                         <div class="border-top w-100 mt-3">

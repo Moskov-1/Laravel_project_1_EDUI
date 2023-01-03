@@ -8,7 +8,7 @@
         </div>
     </x-content.header-template>
     
-    <x-content.tutor-template>
+    <x-content.tutor-template :instructors="$instructors">
     </x-content.tutor-template>
 
 </x-content.site-template>

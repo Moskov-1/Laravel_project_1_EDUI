@@ -24,6 +24,9 @@
                             <th class="border border-slate-600 p-3 ...">Id</th>
                             <th class="border border-slate-600 ...">heading</th>
                             <th class="border border-slate-600 ...">Field</th>
+                            <th class="border border-slate-600 px-3 ...">courses</th>
+                            <th class="border border-slate-600 px-3 ...">blogs</th>
+                            {{-- <th class="border border-slate-600 px-3 ...">instructors</th> --}}
                             <th class="border border-slate-600 ...">Update</th>
                             <th class="border border-slate-600 ...">delete</th>
                           </tr>
@@ -34,6 +37,9 @@
                               <td class="border border-slate-700 p-3 px-5 ...">{{$tag->id}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$tag->title}}</td>
                               <td class="border border-slate-700 px-5 ...">{{$tag->Field}}</td>
+                              <td class="border border-slate-700 px-9 ...">{{$tag->courses_count}}</td>
+                              <td class="border border-slate-700 px-9 ...">{{$tag->blogs_count}}</td>
+                              {{-- <td class="border border-slate-700 px-9 ...">{{$tag->instructors_count}}</td> --}}
                               
                               <td class="border border-slate-700 bg-lime-500 px-5 ...">
                                 <form method="get"

@@ -8,8 +8,8 @@
         <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
             @foreach ($instructors as $instructor)
             <div class="team-item">
-                <img class="img-fluid w-100"
-                    src="{{$instructor->getFirstMediaUrl('profile_picture')}}" alt="">
+                <img class="img-fluid w-100 max-h-100"
+                    src="{{$instructor->getFirstMediaUrl('profile_picture','card')}}" alt="">
                 <div class="bg-light text-center p-4">
                     <h5 class="mb-3">{{$instructor->name}}</h5>
                     <p class="mb-2">{{$instructor->tag->Field}}</p>
